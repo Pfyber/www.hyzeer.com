@@ -24,7 +24,7 @@
         .minimal-nav a { color: var(--dark); text-decoration: none; margin-left: 2rem; font-weight: 500; opacity: 0.8; transition: opacity 0.2s; }
         .minimal-nav a:hover { opacity: 1; }
         .hero-min {
-            text-align: center; padding: 5rem 1rem 2.5rem 1rem; max-width: 600px; margin: 0 auto;
+            text-align: left; max-width: 700px; margin: 5rem auto 2.5rem auto; padding: 0 1.5rem;
             position: relative;
         }
         .hero-min h1 {
@@ -60,7 +60,7 @@
         .help-min li { margin-bottom: 0.7rem; font-size: 1.05rem; }
         .features-min { display: flex; justify-content: center; gap: 2.5rem; margin-top: 3.5rem; }
         .feature-icon-min { font-size: 2.1rem; color: var(--primary); margin-bottom: 0.5rem; }
-        .feature-block-min { min-width: 110px; }
+        .feature-block-min { min-width: 110px; display: flex; flex-direction: column; align-items: center; text-align: center; }
         .feature-block-min p { font-size: 1rem; color: var(--dark); margin: 0; }
         .contact-min {
             background: rgba(255,255,255,0.9); border-radius: 18px; box-shadow: 0 2px 16px rgba(56,142,60,0.07);
@@ -97,40 +97,39 @@
         </div>
     </nav>
 
-    <section class="hero-min">
+    <section class="hero-min" style="text-align:left;max-width:700px;margin:5rem auto 2.5rem auto;padding:0 1.5rem;">
         <div class="animated-accent"></div>
-        <h1>Disc Golf, By Us—For Us</h1>
-        <p>We’re a crew of disc golfers building something new. Hyzeer is just getting started, and we need your help to map every course out there. Let’s make it happen—together.</p>
-        <div class="launch">Launching Fall 2025</div>
+        <h1 style="text-align:left;">Disc Golf, By Us—For Us</h1>
+        <p style="text-align:left;">Hyzeer is a new disc golf app, built by and for disc golfers. We’re just getting started, and we need your help to map every course out there. Let’s make it happen—together.</p>
+        <div class="launch" style="text-align:left;">Launching Fall 2025</div>
         <img src="img/phone-mockup.png" alt="Hyzeer App Preview" class="mockup" onerror="this.style.display='none';document.getElementById('mockup-fallback').style.display='block';">
-        <div id="mockup-fallback" style="display:none;max-width:180px;margin:2rem auto 0 auto;padding:2.5rem 1rem;border-radius:18px;background:rgba(56,142,60,0.07);color:var(--primary);font-weight:600;box-shadow:0 4px 24px rgba(56,142,60,0.08);">App preview coming soon</div>
-        <a href="#contact" class="cta-btn">Get Notified</a>
+        <div id="mockup-fallback" style="display:none;max-width:180px;margin:2rem 0 0 0;padding:2.5rem 1rem;border-radius:18px;background:rgba(56,142,60,0.07);color:var(--primary);font-weight:600;box-shadow:0 4px 24px rgba(56,142,60,0.08);">App preview coming soon</div>
+        <a href="#contact" class="cta-btn" style="margin-left:0;">Get Notified</a>
     </section>
 
-    <section class="about-min" id="about">
-        <h2 style="font-size:1.3rem; font-weight:600; margin-bottom:0.7rem; color:var(--primary)">What is Hyzeer?</h2>
-        <p>We’re disc golfers, not a big company. Hyzeer is open, privacy-first, and shaped by the people who play. No ads. No tracking. No paywalls. Just disc golf, for everyone.</p>
+    <section class="about-min" id="about" style="text-align:left;max-width:700px;margin:3.5rem auto 0 auto;padding:0 1.5rem;">
+        <h2 style="font-size:1.3rem; font-weight:600; margin-bottom:0.7rem; color:var(--primary);text-align:left;">What is Hyzeer?</h2>
+        <p style="text-align:left;">Hyzeer is a new, open, privacy-first disc golf app shaped by the people who play. We’re disc golfers—not a big company. Just disc golf, for everyone.</p>
     </section>
 
-    <section class="why-min">
-        <h2>Why We’re Different</h2>
-        <ul>
+    <section class="why-min" style="text-align:left;max-width:700px;margin:3.5rem auto 0 auto;padding:0 1.5rem;">
+        <h2 style="text-align:left;">Why We’re Different</h2>
+        <ul style="text-align:left;">
             <li><i class="fas fa-users" style="color:var(--primary);"></i> Community-owned, not corporate</li>
-            <li><i class="fas fa-heart" style="color:#fbc02d;"></i> No ads, no tracking, no paywalls</li>
             <li><i class="fas fa-globe" style="color:var(--primary);"></i> Open data, always</li>
         </ul>
     </section>
 
-    <section class="help-min" id="help">
-        <h2 style="font-size:1.2rem; font-weight:600; color:var(--primary)">How You Can Help</h2>
-        <ul>
+    <section class="help-min" id="help" style="text-align:left;max-width:700px;margin:3.5rem auto 0 auto;padding:0 1.5rem;">
+        <h2 style="font-size:1.2rem; font-weight:600; color:var(--primary);text-align:left;">How You Can Help</h2>
+        <ul style="text-align:left;">
             <li>Map your local course (even 9 holes helps!)</li>
             <li>Send feedback and ideas</li>
             <li>Spread the word to your club or friends</li>
         </ul>
     </section>
 
-    <section class="features-min">
+    <section class="features-min" style="text-align:left;max-width:700px;margin:3.5rem auto 0 auto;padding:0 1.5rem;">
         <div class="feature-block-min">
             <div class="feature-icon-min"><i class="fas fa-map-marked-alt"></i></div>
             <p>Find & map courses</p>
@@ -145,27 +144,27 @@
         </div>
     </section>
 
-    <section class="future-min" style="max-width:600px;margin:3.5rem auto 0 auto;padding:0 1rem;text-align:center;">
-        <h2 style="font-size:1.15rem;font-weight:600;color:var(--primary);margin-bottom:0.7rem;">Where We’re Headed</h2>
-        <div style="text-align:left; margin: 0 auto; max-width: 500px;">
+    <section class="future-min" style="max-width:700px;margin:3.5rem auto 0 auto;padding:0 1.5rem;text-align:left;">
+        <h2 style="font-size:1.15rem;font-weight:600;color:var(--primary);margin-bottom:0.7rem;text-align:left;">Where We’re Headed</h2>
+        <div style="text-align:left; margin: 0 auto; max-width: 600px;">
             <div style="margin-bottom:2.2rem;">
-                <strong>Phase 1: Data Collection <span style='color:var(--primary);font-weight:500;'>(Now)</span></strong><br>
+                <strong>Phase 1: Data Collection</strong><br>
                 <span style="color:var(--gray);">We’re building the most open disc golf database out there. Know a course? Add it. Got a disc? Share it. Let’s grow this together.</span>
             </div>
             <div style="margin-bottom:2.2rem;">
-                <strong>Phase 2: Live Course Data <span style='color:var(--primary);font-weight:500;'>(Q3 2025)</span></strong><br>
+                <strong>Phase 2: Live Course Data</strong><br>
                 <span style="color:var(--gray);">See who’s playing, what the weather’s like, and when to throw. No more guessing.</span>
             </div>
             <div style="margin-bottom:2.2rem;">
-                <strong>Phase 3: Virtual Competitions <span style='color:var(--primary);font-weight:500;'>(Q4 2025)</span></strong><br>
+                <strong>Phase 3: Virtual Competitions</strong><br>
                 <span style="color:var(--gray);">Friendly tournaments, leaderboards, and leagues—play with your crew or meet new folks, wherever you are.</span>
             </div>
             <div style="margin-bottom:2.2rem;">
-                <strong>Phase 4: Game Enhancements <span style='color:var(--primary);font-weight:500;'>(2026+)</span></strong><br>
+                <strong>Phase 4: Game Enhancements</strong><br>
                 <span style="color:var(--gray);">Game mods, achievements, and community challenges. Make every round unique.</span>
             </div>
             <div style="margin-bottom:2.2rem;">
-                <strong>Phase 5: Course Owner Tools <span style='color:var(--primary);font-weight:500;'>(2026+)</span></strong><br>
+                <strong>Phase 5: Course Owner Tools</strong><br>
                 <span style="color:var(--gray);">Tools for course owners to keep things running smooth and players in the loop.</span>
             </div>
             <div style="margin-top:2.5rem;color:var(--primary);font-weight:500;">We want your ideas. Hyzeer is for disc golfers, by disc golfers. Let’s build it together.</div>
