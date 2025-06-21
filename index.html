@@ -3,662 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hyzeer - Disc Golf Community Platform</title>
+    <title>Hyzeer – Disc Golf, Together</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #e8f5e9 0%, #fffde7 100%);
+            color: var(--dark);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+        }
+        .minimal-nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1.5rem 2rem 1rem 2rem; max-width: 900px; margin: 0 auto;
+            background: rgba(255,255,255,0.7); border-radius: 18px; box-shadow: 0 2px 12px rgba(56,142,60,0.04);
+        }
+        .minimal-nav .logo { display: flex; align-items: center; gap: 0.7rem; }
+        .minimal-nav .logo img { height: 36px; }
+        .minimal-nav a { color: var(--dark); text-decoration: none; margin-left: 2rem; font-weight: 500; opacity: 0.8; transition: opacity 0.2s; }
+        .minimal-nav a:hover { opacity: 1; }
+        .hero-min {
+            text-align: center; padding: 5rem 1rem 2.5rem 1rem; max-width: 600px; margin: 0 auto;
+            position: relative;
+        }
+        .hero-min h1 {
+            font-size: 2.7rem; font-weight: 700; margin-bottom: 1.1rem;
+            background: linear-gradient(90deg, #388e3c 30%, #fbc02d 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .hero-min p { font-size: 1.22rem; color: var(--gray); margin-bottom: 2.2rem; }
+        .hero-min .launch { color: var(--primary); font-weight: 600; margin-bottom: 2.5rem; }
+        .hero-min .mockup { margin: 2rem auto 0 auto; max-width: 180px; opacity: 0.97; border-radius: 18px; box-shadow: 0 4px 24px rgba(56,142,60,0.08); }
+        .cta-btn { background: var(--primary); color: #fff; border: none; border-radius: 8px; padding: 0.9rem 2.2rem; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: background 0.2s; margin-top: 1.2rem; box-shadow: 0 2px 8px rgba(56,142,60,0.07); }
+        .cta-btn:hover { background: var(--primary-dark); }
+        .community-row {
+            display: flex; justify-content: center; align-items: center; gap: 0.5rem; margin: 2.2rem 0 0.7rem 0;
+        }
+        .community-avatar {
+            width: 38px; height: 38px; border-radius: 50%; border: 2px solid #fff;
+            box-shadow: 0 1px 4px rgba(56,142,60,0.08); object-fit: cover;
+        }
+        .community-row span { font-size: 1.05rem; color: var(--primary); font-weight: 500; margin-left: 0.7rem; }
+        .about-min, .help-min, .features-min, .contact-min, .why-min {
+            max-width: 500px; margin: 3.5rem auto 0 auto; padding: 0 1rem; text-align: center;
+        }
+        .about-min p { color: var(--gray); font-size: 1.1rem; }
+        .why-min {
+            background: rgba(255,255,255,0.8); border-radius: 16px; box-shadow: 0 2px 12px rgba(251,192,45,0.07);
+            margin-top: 2.5rem; padding: 2rem 1.2rem 1.5rem 1.2rem;
+        }
+        .why-min h2 { color: var(--primary); font-size: 1.15rem; font-weight: 600; margin-bottom: 0.6rem; }
+        .why-min ul { list-style: none; padding: 0; margin: 1.1rem 0 0 0; }
+        .why-min li { margin-bottom: 0.6rem; font-size: 1.03rem; color: var(--dark); }
+        .help-min ul { list-style: none; padding: 0; margin: 1.5rem 0 0 0; }
+        .help-min li { margin-bottom: 0.7rem; font-size: 1.05rem; }
+        .features-min { display: flex; justify-content: center; gap: 2.5rem; margin-top: 3.5rem; }
+        .feature-icon-min { font-size: 2.1rem; color: var(--primary); margin-bottom: 0.5rem; }
+        .feature-block-min { min-width: 110px; }
+        .feature-block-min p { font-size: 1rem; color: var(--dark); margin: 0; }
+        .contact-min {
+            background: rgba(255,255,255,0.9); border-radius: 18px; box-shadow: 0 2px 16px rgba(56,142,60,0.07);
+            margin-top: 4rem; padding: 2.2rem 1.2rem 1.5rem 1.2rem;
+        }
+        .contact-min form { display: flex; flex-direction: column; gap: 1.1rem; margin-top: 1.5rem; }
+        .contact-min input, .contact-min textarea { padding: 0.7rem; border: 1px solid var(--gray-light); border-radius: 6px; font-size: 1rem; background: #fff; }
+        .contact-min button { align-self: center; }
+        footer { text-align: center; color: var(--gray); font-size: 0.98rem; margin: 4rem 0 1.5rem 0; }
+        @media (max-width: 600px) { .features-min { flex-direction: column; gap: 1.5rem; } .minimal-nav { flex-direction: column; gap: 1rem; padding: 1.2rem 1rem; } }
+        .animated-accent {
+            position: absolute; left: 50%; top: 0; transform: translateX(-50%);
+            width: 120px; height: 120px; z-index: 0; opacity: 0.13;
+            background: radial-gradient(circle at 60% 40%, #388e3c 0%, #fbc02d 100%);
+            border-radius: 50%; filter: blur(8px); animation: floatAccent 6s ease-in-out infinite;
+        }
+        @keyframes floatAccent {
+            0% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(18px); }
+            100% { transform: translateX(-50%) translateY(0); }
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container">
-            <div class="logo">
-                <img src="img/logo.svg" alt="Hyzeer Logo" id="logo-placeholder">
-                <h1>Hyzeer</h1>
-            </div>            <div class="nav-links">
-                <a href="#features">Features</a>
-                <a href="#stats">Stats</a>
-                <a href="#lost-disc">Lost Disc</a>
-                <a href="#api">API</a>
-                <a href="#roadmap">Roadmap</a>
-                <a href="#contact">Contact</a>
-            </div>
-            <div class="mobile-menu-btn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+    <nav class="minimal-nav">
+        <div class="logo">
+            <img src="img/logo.svg" alt="Hyzeer Logo">
+            <span style="font-weight:600; font-size:1.2rem; color:var(--primary)">Hyzeer</span>
+        </div>
+        <div>
+            <a href="#about">About</a>
+            <a href="#help">Help Map Courses</a>
+            <a href="#contact">Contact</a>
         </div>
     </nav>
 
-    <section class="intro-discgolf">
-        <div class="container">
-            <h1 class="main-greeting">Hey disc golfers <span role="img" aria-label="wave">👋</span></h1>
-            <p class="lead">We’re a group of players building <strong>Hyzeer</strong>—an open, privacy-first, community-powered app that’s <span class="highlight">100% free forever</span>.<br>Unlike anything else, we’re designing the features you want, built entirely by players, for players.</p>
+    <section class="hero-min">
+        <div class="animated-accent"></div>
+        <h1>Disc Golf, By Us—For Us</h1>
+        <p>We’re a crew of disc golfers building something new. Hyzeer is just getting started, and we need your help to map every course out there. Let’s make it happen—together.</p>
+        <div class="launch">Launching Fall 2025</div>
+        <img src="img/phone-mockup.png" alt="Hyzeer App Preview" class="mockup" onerror="this.style.display='none';document.getElementById('mockup-fallback').style.display='block';">
+        <div id="mockup-fallback" style="display:none;max-width:180px;margin:2rem auto 0 auto;padding:2.5rem 1rem;border-radius:18px;background:rgba(56,142,60,0.07);color:var(--primary);font-weight:600;box-shadow:0 4px 24px rgba(56,142,60,0.08);">App preview coming soon</div>
+        <a href="#contact" class="cta-btn">Get Notified</a>
+    </section>
+
+    <section class="about-min" id="about">
+        <h2 style="font-size:1.3rem; font-weight:600; margin-bottom:0.7rem; color:var(--primary)">What is Hyzeer?</h2>
+        <p>We’re disc golfers, not a big company. Hyzeer is open, privacy-first, and shaped by the people who play. No ads. No tracking. No paywalls. Just disc golf, for everyone.</p>
+    </section>
+
+    <section class="why-min">
+        <h2>Why We’re Different</h2>
+        <ul>
+            <li><i class="fas fa-users" style="color:var(--primary);"></i> Community-owned, not corporate</li>
+            <li><i class="fas fa-heart" style="color:#fbc02d;"></i> No ads, no tracking, no paywalls</li>
+            <li><i class="fas fa-globe" style="color:var(--primary);"></i> Open data, always</li>
+        </ul>
+    </section>
+
+    <section class="help-min" id="help">
+        <h2 style="font-size:1.2rem; font-weight:600; color:var(--primary)">How You Can Help</h2>
+        <ul>
+            <li>Map your local course (even 9 holes helps!)</li>
+            <li>Send feedback and ideas</li>
+            <li>Spread the word to your club or friends</li>
+        </ul>
+    </section>
+
+    <section class="features-min">
+        <div class="feature-block-min">
+            <div class="feature-icon-min"><i class="fas fa-map-marked-alt"></i></div>
+            <p>Find & map courses</p>
+        </div>
+        <div class="feature-block-min">
+            <div class="feature-icon-min"><i class="fas fa-compact-disc"></i></div>
+            <p>Track your discs</p>
+        </div>
+        <div class="feature-block-min">
+            <div class="feature-icon-min"><i class="fas fa-database"></i></div>
+            <p>Open data for all</p>
         </div>
     </section>
 
-    <section class="essentials-section">
-        <div class="container">
-            <h2><i class="fas fa-check-circle"></i> Working Right Now: Player Essentials</h2>
-            <ul class="essentials-list">
-                <li><strong>Disc tracking:</strong> manage your bag, inventory, and disc details</li>
-                <li><strong>Hole tracking:</strong> mark holes, track throws in real time</li>
-                <li><strong>Friends & games:</strong> hook up with local or online buddies for rounds</li>
-                <li><strong>Course and hole data:</strong> your team can add new courses right now</li>
-                <li><strong>API & monthly dumps:</strong> for developers, TDs, chart-makers — full data access</li>
-            </ul>
+    <section class="future-min" style="max-width:600px;margin:3.5rem auto 0 auto;padding:0 1rem;text-align:center;">
+        <h2 style="font-size:1.15rem;font-weight:600;color:var(--primary);margin-bottom:0.7rem;">Where We’re Headed</h2>
+        <div style="text-align:left; margin: 0 auto; max-width: 500px;">
+            <div style="margin-bottom:2.2rem;">
+                <strong>Phase 1: Data Collection <span style='color:var(--primary);font-weight:500;'>(Now)</span></strong><br>
+                <span style="color:var(--gray);">We’re building the most open disc golf database out there. Know a course? Add it. Got a disc? Share it. Let’s grow this together.</span>
+            </div>
+            <div style="margin-bottom:2.2rem;">
+                <strong>Phase 2: Live Course Data <span style='color:var(--primary);font-weight:500;'>(Q3 2025)</span></strong><br>
+                <span style="color:var(--gray);">See who’s playing, what the weather’s like, and when to throw. No more guessing.</span>
+            </div>
+            <div style="margin-bottom:2.2rem;">
+                <strong>Phase 3: Virtual Competitions <span style='color:var(--primary);font-weight:500;'>(Q4 2025)</span></strong><br>
+                <span style="color:var(--gray);">Friendly tournaments, leaderboards, and leagues—play with your crew or meet new folks, wherever you are.</span>
+            </div>
+            <div style="margin-bottom:2.2rem;">
+                <strong>Phase 4: Game Enhancements <span style='color:var(--primary);font-weight:500;'>(2026+)</span></strong><br>
+                <span style="color:var(--gray);">Game mods, achievements, and community challenges. Make every round unique.</span>
+            </div>
+            <div style="margin-bottom:2.2rem;">
+                <strong>Phase 5: Course Owner Tools <span style='color:var(--primary);font-weight:500;'>(2026+)</span></strong><br>
+                <span style="color:var(--gray);">Tools for course owners to keep things running smooth and players in the loop.</span>
+            </div>
+            <div style="margin-top:2.5rem;color:var(--primary);font-weight:500;">We want your ideas. Hyzeer is for disc golfers, by disc golfers. Let’s build it together.</div>
         </div>
     </section>
 
-    <section class="course-mapping-section">
-        <div class="container">
-            <h2><i class="fas fa-map-marked-alt"></i> What We Need from You: Course Mapping</h2>
-            <p>We’re starting with <strong>0 courses mapped</strong>—totally blank slate.<br>We need <span class="highlight">GPS hole coordinates</span> to build a top-tier course database.<br>Your contributions mean free, accurate maps for the whole community.</p>
-            <ul class="mapping-list">
-                <li><strong>Privacy-first:</strong> no tracking, no data monetization.</li>
-                <li><strong>Open platform:</strong> public API + monthly data dumps = full community control.</li>
-                <li><strong>Designed by players:</strong> every feature is driven by what you actually need—unlike apps shaped by corporate priorities.</li>
-            </ul>
-        </div>
-    </section>
-
-    <section class="help-section">
-        <div class="container">
-            <h2><i class="fas fa-hands-helping"></i> How You Can Help</h2>
-            <ul class="help-list">
-                <li>Download Hyzeer (Beta on Google Play / App Store)</li>
-                <li>Map a course—even 9 holes is a huge help</li>
-                <li>Upload GPS coordinates, tee/basket locations, photos</li>
-                <li>Offer feedback—tell us what extra you need</li>
-                <li>Get involved—developers, build on our API or help refine tools</li>
-            </ul>
-        </div>
-    </section>
-
-    <section class="supporting-section">
-        <div class="container">
-            <h2><i class="fas fa-bullseye"></i> What You’re Supporting</h2>
-            <ul class="supporting-list">
-                <li>A community-owned disc golf course database</li>
-                <li>An open API that powers side tools, tournament systems, course sites</li>
-                <li>A privacy-safe, player-made alternative to locked platforms</li>
-            </ul>
-            <div class="cta-row">
-                <a href="#" class="button primary"><i class="fab fa-google-play"></i> Try it now: Google Play</a>
-                <a href="#" class="button primary"><i class="fab fa-apple"></i> App Store</a>
-                <a href="https://hyzeer.com" class="button secondary"><i class="fas fa-globe"></i> Learn more: hyzeer.com</a>
-            </div>
-        </div>
-    </section>
-
-    <section class="call-to-action-section">
-        <div class="container">
-            <h2><i class="fas fa-rocket"></i> Call to Action</h2>
-            <ul class="cta-list">
-                <li>Map a course this weekend</li>
-                <li>Drop a comment: which course does your community need first?</li>
-                <li>Contribute on GitHub: code suggestions, mapper improvements, testing</li>
-            </ul>
-        </div>
-    </section>
-
-    <header class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Track Your Discs. Play Your Game.</h1>
-                <p class="subtitle">A disc golf app for the community</p>
-                <p class="comparison">Your data stays <span class="highlight">yours</span> and <span class="highlight">community-owned</span></p>
-                <div class="app-store-buttons">
-                    <a href="#" class="app-store-button">
-                        <i class="fab fa-google-play"></i>
-                        <span>
-                            <small>GET IT ON</small>
-                            Google Play
-                        </span>
-                    </a>
-                    <a href="#" class="app-store-button">
-                        <i class="fab fa-apple"></i>
-                        <span>
-                            <small>Download on the</small>
-                            App Store
-                        </span>
-                    </a>
-                </div>
-                <div class="cta-buttons">
-                    <a href="#contact" class="button primary">Join the Community</a>
-                </div>
-            </div>
-            <div class="phone-mockup">
-                <div class="phone-frame">
-                    <img src="img/phone-mockup.png" alt="Hyzeer App" id="phone-mockup-placeholder">
-                </div>
-            </div>
-        </div>
-        <div class="gradient-bg"></div>
-    </header>
-
-    <section id="community-hook" class="community-callout" style="margin-top:0;">
-        <div class="container">
-            <h3>Join the Fun!</h3>
-            <p>Hyzeer is built by disc golfers. Instead of keeping data locked up, we’re building a disc golf app that belongs to all of us.</p>
-            <a href="#contact" class="button primary">Join the Community</a>
-        </div>
-    </section>
-
-    <section id="features" class="features">
-        <div class="container">            <h2 class="section-title">Powerful Features for Every Player</h2>
-            <p class="features-subtitle">Everything you need to up your game - <span class="highlight">no paywalls, no subscriptions</span></p>
-            <div class="features-grid">
-                <div class="feature-card" data-aos="fade-up">
-                    <div class="feature-icon">
-                        <i class="fas fa-globe"></i>
-                    </div>
-                    <h3>Open Course Data</h3>
-                    <p>Find over 15,000 courses with player tips, photos and ratings that actually make sense</p>
-                    <span class="community-badge">Community Powered</span>
-                </div>
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="feature-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h3>Instant Disc Scanning</h3>
-                    <p>Just snap a pic and we'll tell you what disc it is - works even on beat-up discs!<br>It also records GPS position.</p>
-                </div>
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="feature-icon">
-                        <i class="fas fa-search-location"></i>
-                    </div>
-                    <h3>Lost Disc Network</h3>
-                    <p>Lost your favorite disc? Our network helps get discs back to their owners 89% of the time - that's crazy good!</p>
-                    <span class="community-badge">Community Powered</span>
-                </div>
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Advanced Analytics</h3>
-                    <p>See how you're improving with stats that actually help your game - and brag to your friends!</p>
-                </div>
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="400">                    <div class="feature-icon" title="Double-click me" style="cursor: pointer;">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                    <h3>3rd Party Tools Welcome</h3>
-                    <p>Integrate with our public API for tournaments, events, and more!</p>
-                </div>
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
-                    <div class="feature-icon">
-                        <i class="fas fa-lock"></i>
-                    </div>
-                    <h3>Privacy First</h3>
-                    <p>We'll never sell your data or track your every move - your disc golf life is your business</p>
-                </div>
-            </div>
-        </div>
-    </section>    <section id="stats" class="stats">
-        <div class="container">
-            <h2 class="stats-title">Growing Faster Than Any Platform</h2>
-            <div class="stats-container">
-                <div class="stat-item" data-aos="fade-up">
-                    <span class="stat-number" data-target="15000">0</span>
-                    <span class="stat-label">Courses Mapped</span>
-                    <span class="stat-note">And adding 200+ weekly</span>
-                </div>
-                <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
-                    <span class="stat-number" data-target="500000">0</span>
-                    <span class="stat-label">Active Players</span>
-                    <span class="stat-note">Building together</span>
-                </div>
-                <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
-                    <span class="stat-number" data-target="2300000">0</span>
-                    <span class="stat-label">Discs Tracked</span>
-                    <span class="stat-note">All data freely available</span>
-                </div>
-                <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
-                    <span class="stat-number" data-target="89">0</span>
-                    <span class="stat-label">% Lost Disc Return Rate</span>
-                    <span class="stat-note">3x better than competitors</span>
-                </div>
-            </div>
-            <p class="stats-footer">Come throw with us! We're growing fast because disc golfers know a good thing when they see it.</p>
-        </div>
-    </section>
-
-    <section id="lost-disc" class="lost-disc">
-        <div class="container">
-            <h2 class="section-title">Lost Disc Recovery Network</h2>
-            <div class="steps-container">
-                <div class="step" data-aos="fade-right">
-                    <div class="step-number">1</div>
-                    <h3>Register Your Disc</h3>
-                    <p>Add your disc to your digital bag with one quick scan</p>
-                </div>
-                <div class="step" data-aos="fade-up">
-                    <div class="step-number">2</div>
-                    <h3>Apply QR Code</h3>
-                    <p>Place our weatherproof QR code sticker on your disc</p>
-                </div>
-                <div class="step" data-aos="fade-left">
-                    <div class="step-number">3</div>
-                    <h3>Get Notified</h3>
-                    <p>When found, you're instantly connected with the finder</p>
-                </div>
-            </div>
-            <div class="qr-showcase">
-                <div class="qr-image" data-aos="zoom-in">
-                    <img src="img/qr-code.png" alt="QR Code System" id="qr-placeholder">
-                </div>
-                <div class="qr-info" data-aos="fade-left">
-                    <h3>Global Network</h3>                    <p>Players in 52 countries are helping each other get their favorite discs back. That's what the sport is all about!</p>
-                    <p>With our 89% return rate, your chances of seeing that lost disc again are better than ever.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="roadmap" class="roadmap">
-        <div class="container">
-            <h2 class="section-title">Community-Driven Roadmap</h2>
-            <p class="roadmap-subtitle">Got ideas? We're all ears! This roadmap is just the starting point.</p>
-            
-            <div class="timeline">
-                <div class="timeline-item" data-aos="fade-right">
-                    <div class="timeline-badge active">
-                        <i class="fas fa-check"></i>
-                    </div>
-                    <div class="timeline-content active">
-                        <h3>Phase 1: Data Collection</h3>
-                        <p class="timeline-date">Current Phase</p>                        <p>We're putting together the biggest disc golf database ever - and keeping it open for everyone to use, forever.</p>
-                        <div class="contribution-callout">
-                            <i class="fas fa-hands-helping"></i>
-                            <p>Know a great course? Got a favorite disc? Share what you know and help the community grow!</p>
-                        </div>
-                    </div>
-                </div>
-                  <div class="timeline-item" data-aos="fade-left">
-                    <div class="timeline-badge">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>Phase 2: Live Course Data</h3>
-                        <p class="timeline-date">Coming Q3 2025</p>
-                        <p>Check if your local course is packed before you head out. No more showing up to find a 2-hour wait at the first tee!</p>
-                        <ul class="feature-list">
-                            <li><i class="fas fa-check-circle"></i> Real-time player counts</li>
-                            <li><i class="fas fa-check-circle"></i> Player location tracking</li>
-                            <li><i class="fas fa-check-circle"></i> Weather conditions</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="timeline-item" data-aos="fade-right">
-                    <div class="timeline-badge">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>Phase 3: Virtual Competitions</h3>
-                        <p class="timeline-date">Coming Q4 2025</p>
-                        <p>Play against others currently on the same course or compete with friends remotely.</p>
-                        <ul class="feature-list">
-                            <li><i class="fas fa-check-circle"></i> Impromptu tournaments</li>
-                            <li><i class="fas fa-check-circle"></i> Cross-course leaderboards</li>
-                            <li><i class="fas fa-check-circle"></i> Virtual disc golf leagues</li>
-                        </ul>
-                    </div>
-                </div>
-                  <div class="timeline-item" data-aos="fade-left">
-                    <div class="timeline-badge">
-                        <i class="fas fa-gamepad"></i>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>Phase 4: Game Enhancements</h3>
-                        <p class="timeline-date">Coming Q1 2026</p>
-                        <p>Add exciting new dimensions to your games with fun modifiers and achievements.</p>
-                        <ul class="feature-list">
-                            <li><i class="fas fa-check-circle"></i> Game modifiers (one-disc challenge, etc.)</li>
-                            <li><i class="fas fa-check-circle"></i> Achievement system</li>
-                            <li><i class="fas fa-check-circle"></i> Virtual currency betting</li>
-                            <li><i class="fas fa-check-circle"></i> Community easter egg hunts</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item" data-aos="fade-right">
-                    <div class="timeline-badge">
-                        <i class="fas fa-landmark"></i>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>Phase 5: Course Owner Portal</h3>
-                        <p class="timeline-date">Coming Q2 2026</p>
-                        <p>Dedicated tools for course owners to manage their facilities and improve player experiences.</p>
-                        <ul class="feature-list">
-                            <li><i class="fas fa-check-circle"></i> Course verification & ownership</li>
-                            <li><i class="fas fa-check-circle"></i> Maintenance issue reporting system</li>
-                            <li><i class="fas fa-check-circle"></i> Course traffic analytics</li>
-                            <li><i class="fas fa-check-circle"></i> Wait time estimation & tee time management</li>
-                        </ul>
-                        <div class="contribution-callout">
-                            <i class="fas fa-flag"></i>
-                            <p>Course owners receive alerts about reported issues and can communicate updates to players</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Join Our Community</h2>
-            <p class="contact-subtitle">Want to make disc golf better for everyone? We’d love your help!</p>
-            <div class="contact-content">
-                <div class="contact-form" data-aos="fade-right" data-lat="46.1195" data-lng="14.8379">
-                    <form>
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="contribution">How would you like to contribute?</label>
-                            <select id="contribution" name="contribution" required>
-                                <option value="">Select an option</option>
-                                <option value="course_mapping">Course Mapping</option>
-                                <option value="disc_data">Disc Data Collection</option>
-                                <option value="beta_testing">Beta Testing</option>
-                                <option value="development">App Development</option>
-                                <option value="community">Community Building</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="button primary">Join the Community</button>
-                    </form>
-                </div>
-                <div class="contact-info" data-aos="fade-left">
-                    <div class="info-item highlight-box">
-                        <i class="fas fa-users"></i>
-                        <div>
-                            <h3>By Players, For Players</h3>
-                            <p>We're disc golfers too! That's why we built the app we always wanted - one that puts the community first.</p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-envelope"></i>
-                        <a href="mailto:support@hyzeer.com">support@hyzeer.com</a>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-lock"></i>
-                        <p>Your privacy is our priority. We never share your contact information.</p>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-code-branch"></i>
-                        <p>Hyzeer is open source! Contribute on GitHub.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section id="api" class="api">
-        <div class="container">            <h2 class="section-title">Developer API</h2>            <p class="api-description">Got coding skills? Our API is yours to play with</p>
-            <p class="api-features">Create your own disc golf tools with our course maps, player data, and more</p>
-              <div class="api-tabs">
-                <button class="tab-button active" data-tab="course">Course Data</button>
-                <button class="tab-button" data-tab="hole">Hole Details</button>
-                <button class="tab-button" data-tab="tee">Tee Locations</button>
-                <button class="tab-button" data-tab="player">Player Stats</button>
-                <button class="tab-button" data-tab="graphql">GraphQL</button>
-            </div>
-            
-            <div class="code-examples">                <div class="code-block active" id="course-example">
-<pre><code>// Get course information with layout options
-fetch('https://api.hyzeer.com/v1/courses/1234')
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);
-    /* {
-      "id": "1234",
-      "name": "Maple Hill",
-      "holes": 18,
-      "location": {
-        "city": "Leicester",
-        "state": "MA",
-        "country": "USA",
-        "coordinates": {
-          "lat": 42.2728,
-          "lng": -71.9058
-        }
-      },
-      "rating": 4.9,
-      "difficulty": "Pro",      "layouts": ["Gold", "Blue", "White", "Red"],
-      "amenities": ["Parking", "Restrooms", "Pro Shop"],
-      "currentPlayers": 24
-    } */
-  });</code></pre>
-                </div><div class="code-block" id="hole-example">
-<pre><code>// Get detailed hole information for a specific course
-fetch('https://api.hyzeer.com/v1/courses/1234/holes')
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);
-    /* [
-      {
-        "holeNumber": 1,
-        "par": 3,
-        "distance": {
-          "gold": 450,
-          "blue": 425,
-          "white": 410,
-          "red": 380
-        },
-        "elevationChange": -10,
-        "outOfBounds": ["right", "behind basket"],
-        "holeType": "wooded",
-        "avgScore": 3.2,
-        "coordinates": {
-          "basket": {
-            "lat": 42.2738,
-            "lng": -71.9068
-          }
-        }
-      },
-      // More holes...
-    ] */
-  });</code></pre>
-                </div>                <div class="code-block" id="tee-example">
-<pre><code>// Get precise tee and basket locations for mapping
-fetch('https://api.hyzeer.com/v1/courses/1234/layout/gold/geo')
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);
-    /* {
-      "courseId": "1234",
-      "layout": "gold",
-      "teeTypes": ["concrete", "turf", "natural"],
-      "holes": [
-        {
-          "holeNumber": 1,
-          "teeLocation": {
-            "lat": 42.27450,
-            "lng": -71.90580,
-            "elevation": 320,
-            "type": "concrete"
-          },
-          "basketLocation": {
-            "lat": 42.27520,
-            "lng": -71.90680,
-            "elevation": 310,
-            "type": "DISCatcher Pro"
-          },
-          "fairwayPath": [
-            {"lat": 42.27450, "lng": -71.90580},
-            {"lat": 42.27470, "lng": -71.90610},
-            {"lat": 42.27490, "lng": -71.90650},
-            {"lat": 42.27520, "lng": -71.90680}
-          ],
-          "obstacles": [
-            {
-              "type": "tree",
-              "location": {"lat": 42.27480, "lng": -71.90630}
-            },
-            {
-              "type": "water",
-              "polygon": [
-                {"lat": 42.27500, "lng": -71.90660},
-                {"lat": 42.27510, "lng": -71.90670},
-                {"lat": 42.27515, "lng": -71.90675},
-                {"lat": 42.27505, "lng": -71.90665}
-              ]
-            }
-          ]
-        },
-        // More holes...
-      ]
-    } */
-  });</code></pre>
-                </div>                <div class="code-block" id="player-example">
-<pre><code>// Get current players on a course with real-time locations
-fetch('https://api.hyzeer.com/v1/courses/1234/players')
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);
-    /* {
-      "courseId": "1234",
-      "totalPlayers": 24,
-      "groups": [
-        {
-          "groupId": "g-8723",
-          "playerCount": 4,
-          "currentHole": 7,
-          "startTime": "2025-06-17T14:30:00Z",
-          "playTime": "01:45:22",
-          "location": {
-            "lat": 42.27550,
-            "lng": -71.90720
-          }
-        },
-        // More groups...
-      ],
-      "waitTime": {
-        "estimatedMinutes": 15,
-        "nextTeeTime": "2025-06-17T16:45:00Z"
-      },
-      "topPerformers": [
-        {
-          "playerId": "p-45231",
-          "currentScore": -5,
-          "currentHole": 15
-        }
-      ]
-    } */
-  });</code></pre>
-                </div>
-
-                <div class="code-block" id="graphql-example">
-<pre><code>// GraphQL query for comprehensive course data
-const query = `{
-  course(id: 1234) {
-    name
-    holes
-    location {
-      city
-      state
-      coordinates {
-        lat
-        lng
-      }
-    }
-    currentPlayers
-    holeDetails {
-      number
-      par
-      distance(layout: "gold")
-      avgScore
-      topAces {
-        player {
-          name
-          id
-        }
-        date
-      }
-    }
-    nearbyPlayers {
-      count
-      waitTime
-    }
-    currentWeather {
-      conditions
-      wind {
-        speed
-        direction
-      }
-      temperature
-    }
-  }
-}`;
-
-fetch('https://api.hyzeer.com/graphql', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ query })
-});</code></pre>
-                </div>
-            </div>
-            <div class="api-cta">
-                <a href="#" class="button primary" data-aos="fade-up">Get API Key</a>
-                <a href="#" class="button secondary" data-aos="fade-up" data-aos-delay="100">Read Docs</a>
-            </div>
-        </div>
+    <section class="contact-min" id="contact">
+        <h2 style="font-size:1.2rem; font-weight:600; color:var(--primary)">Get Involved or Stay in the Loop</h2>
+        <p style="color:var(--gray);margin-bottom:1.2rem;">Right now, we’re looking for beta testers and disc golfers who can help map courses (hole and tee positions). If you want to help, or just want updates, let us know below!</p>
+        <form>
+            <input type="text" name="name" placeholder="Your name" required>
+            <input type="email" name="email" placeholder="Your email" required>
+            <select name="interest" required style="padding:0.7rem;border:1px solid var(--gray-light);border-radius:6px;font-size:1rem;background:#fff;">
+                <option value="" disabled selected>How do you want to help?</option>
+                <option value="beta">Beta test the app</option>
+                <option value="mapping">Map courses (hole/tee positions)</option>
+                <option value="feedback">General feedback or questions</option>
+                <option value="just-updates">Just want updates</option>
+            </select>
+            <textarea name="message" rows="3" placeholder="Tell us more (optional)"></textarea>
+            <button type="submit" class="cta-btn">Contact the Team</button>
+        </form>
+        <div style="margin-top:1.2rem; color:var(--gray); font-size:0.98rem;">Or email us: <a href="mailto:support@hyzeer.com" style="color:var(--primary)">support@hyzeer.com</a></div>
+        <div style="margin-top:0.7rem; color:var(--gray); font-size:0.92rem;">We respect your privacy. Your info is only used to reply or send project updates.</div>
     </section>
 
     <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="img/logo.svg" alt="Hyzeer Logo" id="footer-logo-placeholder">
-                    <p>Connecting disc golfers worldwide</p>
-                </div>
-                <div class="footer-links">                <div class="link-group">
-                    <h4>App</h4>
-                    <a href="#">Google Play</a>
-                    <a href="#">App Store</a>
-                    <a href="#features">Features</a>
-                    <a href="#roadmap">Roadmap</a>
-                    <a href="#">Privacy</a>
-                </div>
-                <div class="link-group">
-                    <h4>Community</h4>
-                    <a href="#roadmap">Contribute Data</a>
-                    <a href="#">Join Beta Team</a>
-                    <a href="#">Disc Golf Events</a>
-                </div>
-                <div class="link-group">
-                    <h4>Developers</h4>
-                    <a href="#api">API</a>
-                    <a href="#">Documentation</a>
-                    <a href="#">GitHub</a>
-                </div>
-                <div class="link-group">
-                    <h4>Support</h4>
-                    <a href="mailto:support@hyzeer.com">Email Support</a>
-                    <a href="#">FAQ</a>
-                    <a href="#">Report Issue</a>
-                </div>
-                </div>
-            </div>            <div class="footer-bottom">
-                <p>&copy; 2025 Hyzeer. All rights reserved.</p>
-                <p>Made with ♥ for the disc golf community</p>
-                <p class="easter-egg-counter" style="display:none; margin-top: 10px; padding: 5px 10px; background-color: rgba(0,0,0,0.1); border-radius: 5px; text-align: center;">Nice find! You've discovered <span>0</span> hidden surprises!</p>
-            </div>
-        </div>
+        Launching Fall 2025 &mdash; Made by disc golfers, for disc golfers.
     </footer>
-
-    <script src="https://unpkg.com/intersection-observer@0.12.0/intersection-observer.js"></script>
-    <script src="js/main.js"></script>
 </body>
 </html>
