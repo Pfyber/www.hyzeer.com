@@ -1,16 +1,16 @@
 :root {
-    /* New vibrant, professional color scheme */
-    --primary: #388e3c;         /* Disc golf green */
-    --primary-dark: #256029;    /* Darker green for hover */
-    --secondary: #fbc02d;       /* Yellow for disc/gold accent */
-    --tertiary: #ff7043;        /* Soft orange for highlights */
+    /* Blue professional color scheme */
+    --primary: #87cdde;         /* Light blue */
+    --primary-dark: #5ba3c8;    /* Darker blue for hover */
+    --secondary: #4a90a4;       /* Medium-dark blue accent */
+    --tertiary: #6ba8c5;        /* Teal-blue for highlights */
     --dark: #263238;            /* Deep slate for text */
     --light: #f4f7f3;           /* Soft off-white */
     --gray: #789262;            /* Olive-gray for subtle text */
-    --gradient-start: #388e3c;  /* Green gradient start */
-    --gradient-end: #fbc02d;    /* Yellow gradient end */
+    --gradient-start: #87cdde;  /* Light blue gradient start */
+    --gradient-end: #5ba3c8;    /* Dark blue gradient end */
     --warning: #ff7043;         /* Orange for attention */
-    --success: #43a047;         /* Green for success */
+    --success: #4a90a4;         /* Blue for success */
     --code-bg: #2e4732;         /* Deep green for code backgrounds */
     --gray-light: #cfd8dc;      /* Light gray for subtle elements */
 }
