@@ -181,13 +181,13 @@
     animation: float 6s ease-in-out infinite;
   }
   @keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(-2deg); }
-    50% { transform: translateY(-20px) rotate(-2deg); }
+    0%, 100% { transform: translateY(0px) rotate(-2deg) scale(0.72); }
+    50% { transform: translateY(-20px) rotate(-2deg) scale(0.72); }
   }
   .phone-frame {
     width: 280px; height: 560px;
     background: var(--surface);
-    border-radius: 40px;
+    border-radius: 15px;
     border: 2px solid rgba(255,255,255,0.12);
     box-shadow:
       0 0 0 1px rgba(255,255,255,0.04),
@@ -214,7 +214,7 @@
     margin-bottom: 16px;
   }
   .phone-welcome {
-    background: var(--surface2); border-radius: 12px;
+    background: var(--surface2); border-radius: 2px;
     padding: 14px; margin-bottom: 12px;
     text-align: center; font-size: 11px; color: var(--muted2);
     border: 1px solid var(--border);
@@ -224,7 +224,7 @@
     display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px;
   }
   .phone-card {
-    background: var(--surface2); border-radius: 10px;
+    background: var(--surface2); border-radius: 2px;
     padding: 12px; border: 1px solid var(--border);
     display: flex; align-items: center; gap: 8px;
   }
@@ -238,7 +238,7 @@
   .phone-quick-title { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 8px; }
   .phone-btn {
     background: transparent; border: 1px solid rgba(0,229,160,0.25);
-    border-radius: 8px; padding: 8px; text-align: center;
+    border-radius: 2px; padding: 8px; text-align: center;
     font-size: 10px; color: var(--accent); margin-bottom: 5px;
     font-weight: 500; letter-spacing: 0.5px;
   }
@@ -259,7 +259,7 @@
     width: 200px; height: 200px;
     background: radial-gradient(circle, rgba(0,229,160,0.15) 0%, transparent 70%);
     bottom: -60px; left: 50%; transform: translateX(-50%);
-    border-radius: 50%;
+    border-radius: 2px;
     filter: blur(30px);
     pointer-events: none;
   }
