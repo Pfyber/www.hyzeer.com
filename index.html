@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hyzeer — Disc Golf, Elevated</title>
+<link rel="icon" type="image/png" href="img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.35.0/tabler-icons.min.css" integrity="sha512-gzw5zNP2TRq+DKyAqZfDclaTG4dOrGJrwob2Fc8xwcJPDPVij0HowLIMZ8c1NefFM0OZZYUUUNoPfcoI5jqudw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -90,10 +91,14 @@
   }
   .hero-bg {
     position: absolute; inset: 0;
-    background:
-      radial-gradient(ellipse 80% 60% at 60% 40%, rgba(0,229,160,0.06) 0%, transparent 60%),
-      radial-gradient(ellipse 50% 50% at 20% 70%, rgba(0,184,255,0.05) 0%, transparent 50%),
-      radial-gradient(ellipse 60% 40% at 80% 80%, rgba(255,107,53,0.04) 0%, transparent 50%);
+    background-image:
+      linear-gradient(180deg, rgba(8,12,15,0.55) 0%, rgba(8,12,15,0.82) 100%),
+      radial-gradient(ellipse 80% 60% at 60% 40%, rgba(0,229,160,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 20% 70%, rgba(0,184,255,0.06) 0%, transparent 50%),
+      url('img/cover.png');
+    background-size: cover, cover, cover, cover;
+    background-position: center center, center center, center center, center center;
+    background-repeat: no-repeat;
   }
   .hero-grid {
     position: absolute; inset: 0;
@@ -398,9 +403,30 @@
     color: var(--text); transition: all 0.2s; min-width: 148px;
   }
   .app-btn:hover { border-color: rgba(255,255,255,0.2); background: var(--surface2); transform: translateY(-2px); }
-  .app-btn-icon { font-size: 26px; }
+  .app-btn-icon {
+    font-size: 26px;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .app-btn-icon i { font-size: inherit; }
   .app-btn-sub { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
   .app-btn-name { font-size: 15px; font-weight: 600; line-height: 1; margin-top: 1px; }
+  .app-btn-soon {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    border: 1px solid rgba(0,184,255,0.3);
+    background: rgba(0,184,255,0.12);
+    color: var(--accent2);
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+  }
   .web-btn {
     display: inline-flex; align-items: center; gap: 8px; margin-top: 16px;
     color: var(--accent); font-size: 14px; text-decoration: none;
@@ -490,13 +516,13 @@
     background: var(--surface);
   }
   .footer-inner { max-width: 1200px; margin: 0 auto; }
-  .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+  .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 36px; margin-bottom: 60px; }
   .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: var(--accent); letter-spacing: 3px; display:flex; align-items:center; gap:10px; }
   .footer-logo img { width: 36px; height: 36px; object-fit: contain; border-radius: 50%; margin-right: 10px; vertical-align: middle; }
   .footer-tagline { font-size: 14px; color: var(--muted2); margin-top: 8px; line-height: 1.6; max-width: 280px; }
   .footer-col-title { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; color: var(--muted); }
   .footer-links { display: flex; flex-direction: column; gap: 10px; }
-  .footer-links a { font-size: 14px; color: var(--muted2); text-decoration: none; transition: color 0.2s; }
+  .footer-links a { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--muted2); text-decoration: none; transition: color 0.2s; }
   .footer-links a:hover { color: var(--text); }
   .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 32px; border-top: 1px solid var(--border); }
   .footer-copy { font-size: 13px; color: var(--muted); }
@@ -561,6 +587,10 @@
   }
   .donate-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(135,205,222,0.3); }
   .donate-btn i { font-size: 20px; }
+  .donate-community { margin-top: 16px; font-size: 13px; color: var(--muted2); }
+  .donate-community-links { display: inline-flex; gap: 14px; margin-left: 8px; }
+  .donate-community-links a { color: var(--accent2); text-decoration: none; font-weight: 500; }
+  .donate-community-links a:hover { color: var(--text); }
 
   /* ── TOAST ── */
   .toast {
@@ -730,7 +760,7 @@
   <div class="features-wrap">
     <span class="section-tag">// Features</span>
     <h2>Everything you need.<br>Nothing you don't.</h2>
-    <p class="section-sub">No paywalls. No subscriptions. No selling your data. The app is fresh out the gate — add your courses, discs, and rounds to help the community grow.</p>
+    <p class="section-sub">No paywalls. No subscriptions. Your data is never sold. Hyzeer is free, and shared data can power community tools through the Hyzeer API. We just launched, so add your courses, discs, and rounds to help everyone grow.</p>
     <div class="features-grid">
       <div class="feature-card">
         <span class="feature-icon"><i class="ti ti-disc"></i></span>
@@ -757,27 +787,9 @@
 
       </div>
       <div class="feature-card">
-        <span class="feature-icon"><i class="ti ti-chart-bar"></i></span>
-        <div class="feature-title">Advanced Analytics</div>
-        <div class="feature-desc">See how you're improving with stats that actually help your game. Track scores over time, compare courses, and benchmark against friends.</div>
-
-      </div>
-      <div class="feature-card">
         <span class="feature-icon"><i class="ti ti-trophy"></i></span>
         <div class="feature-title">Open Public Games</div>
         <div class="feature-desc">Open a match on any course and let nearby players jump in — no signup, no organizer, just pure action and fair play.</div>
-
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon"><i class="ti ti-crosshair"></i></span>
-        <div class="feature-title">Simple GPS Scoring</div>
-        <div class="feature-desc">Track every throw with or without GPS location. Choose how much data you share — score alone or map your shots.</div>
-
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon"><i class="ti ti-pencil"></i></span>
-        <div class="feature-title">Custom Course Builder</div>
-        <div class="feature-desc">Design multiple layouts for a single physical course. Create rotating tees, alternate hole orders, or event-specific maps.</div>
 
       </div>
       <div class="feature-card">
@@ -794,9 +806,9 @@
 
       </div>
       <div class="feature-card">
-        <span class="feature-icon"><i class="ti ti-planet"></i></span>
-        <div class="feature-title">Public Games <span class="feature-badge blue">Coming Soon</span></div>
-        <div class="feature-desc">Open a match to anyone nearby and grow the community with spontaneous events.</div>
+        <span class="feature-icon"><i class="ti ti-messages"></i></span>
+        <div class="feature-title">Social Community Feed <span class="feature-badge blue">Coming Soon</span></div>
+        <div class="feature-desc">Post round results to your friend group, like and comment on rounds, and shape a living community feed built by players.</div>
 
       </div>
       <div class="feature-card">
@@ -880,7 +892,7 @@
           <div class="step-num">1</div>
           <div>
             <h3>Register Your Disc</h3>
-            <p>Add your disc to your digital bag. One scan and it's in — no fuss, no lengthy forms.</p>
+            <p>Add your disc to your digital bag, generate its QR code, print it, and stick it on — quick setup, no lengthy forms.</p>
           </div>
         </div>
         <div class="step">
@@ -928,17 +940,18 @@
       <p class="download-sub">Available on Android, iOS, and in your browser. Your data, your game, your way — always synced, always free.</p>
       <div class="app-btns">
         <a href="#" class="app-btn">
-          <div class="app-btn-icon">🤖</div>
+          <div class="app-btn-icon"><i class="ti ti-brand-google-play"></i></div>
           <div>
             <div class="app-btn-sub">Get it on</div>
             <div class="app-btn-name">Google Play</div>
           </div>
         </a>
         <a href="#" class="app-btn">
-          <div class="app-btn-icon">🍎</div>
+          <div class="app-btn-icon"><i class="ti ti-brand-apple"></i></div>
           <div>
             <div class="app-btn-sub">Download on the</div>
             <div class="app-btn-name">App Store</div>
+            <span class="app-btn-soon">Coming Soon</span>
           </div>
         </a>
       </div>
@@ -994,6 +1007,7 @@
           <div class="roadmap-item">Course database build-out</div>
           <div class="roadmap-item">Disc bag management</div>
           <div class="roadmap-item">Game creation & scoring</div>
+          <div class="roadmap-item">Public matches</div>
           <div class="roadmap-item">QR Lost Disc network</div>
         </div>
       </div>
@@ -1003,7 +1017,6 @@
         <div class="roadmap-title">Real‑time & Game Features</div>
         <div class="roadmap-items">
           <div class="roadmap-item">Real-time player counts</div>
-          <div class="roadmap-item">Public games</div>
           <div class="roadmap-item">Challenges & achievements</div>
         </div>
       </div>
@@ -1030,6 +1043,13 @@
       <button class="donate-btn" id="donate-btn">
         Donate Now
       </button>
+    </div>
+    <div class="donate-community">
+      Help community grow.
+      <span class="donate-community-links">
+        <a href="https://www.reddit.com/r/Hyzeer/" target="_blank">Reddit</a>
+        <a href="https://discord.com" target="_blank">Discord</a>
+      </span>
     </div>
   </div>
 </div>
@@ -1068,6 +1088,18 @@
           <a href="#">Privacy Policy</a>
           <a href="#">Report Issue</a>
           <a href="#">FAQ</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Social</div>
+        <div class="footer-links">
+          <a href="mailto:admin@hyzeer.com"><i class="ti ti-mail"></i>Email</a>
+          <a href="https://www.reddit.com/r/Hyzeer/" target="_blank"><i class="ti ti-brand-reddit"></i>Reddit</a>
+          <a href="https://tiktok.com" target="_blank"><i class="ti ti-brand-tiktok"></i>TikTok</a>
+          <a href="https://x.com" target="_blank"><i class="ti ti-brand-x"></i>X</a>
+          <a href="https://instagram.com/HyzeerOfficial" target="_blank"><i class="ti ti-brand-instagram"></i>Instagram</a>
+          <a href="https://discord.com" target="_blank"><i class="ti ti-brand-discord"></i>Discord</a>
+          <a href="https://bsky.app" target="_blank"><i class="ti ti-world"></i>Bluesky</a>
         </div>
       </div>
     </div>
