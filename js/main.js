@@ -23,7 +23,7 @@
     el.style.transitionDelay = `${i * 0.07}s`;
   });
 
-  // Click logo to fly a bird icon toward the Play Now button in ~3 seconds.
+  // Click logo to curve a disc into the Play Now basket icon.
   const logoLink = document.querySelector('.nav-logo');
   const playNowButton = document.querySelector('.btn-lg.primary');
   let activeLogoFlights = 0;
@@ -32,97 +32,127 @@
     logoLink.addEventListener('click', (event) => {
       event.preventDefault();
 
-      const logoBird = logoLink.querySelector('.nav-logo-img') || logoLink;
-      const startRect = logoBird.getBoundingClientRect();
-      const endRect = playNowButton.getBoundingClientRect();
+      const logoDisc = logoLink.querySelector('.nav-logo-img') || logoLink;
+      const basketTarget = playNowButton.querySelector('.play-now-basket') || playNowButton;
+      const startRect = logoDisc.getBoundingClientRect();
+      const endRect = basketTarget.getBoundingClientRect();
       const baseStartX = startRect.left + (startRect.width / 2);
       const baseStartY = startRect.top + (startRect.height / 2);
       const endX = endRect.left + (endRect.width / 2);
       const endY = endRect.top + (endRect.height / 2);
 
-      const bezierPoint = (t, p0, p1, p2) => ((1 - t) * (1 - t) * p0) + (2 * (1 - t) * t * p1) + (t * t * p2);
-      const bezierSlope = (t, p0, p1, p2) => (2 * (1 - t) * (p1 - p0)) + (2 * t * (p2 - p1));
-
+      const cubicPoint = (t, p0, p1, p2, p3) => (
+        ((1 - t) ** 3) * p0 +
+        (3 * ((1 - t) ** 2) * t * p1) +
+        (3 * (1 - t) * (t ** 2) * p2) +
+        ((t ** 3) * p3)
+      );
       const startSpreadX = (Math.random() * 16) - 8;
       const startSpreadY = (Math.random() * 14) - 7;
       const startX = baseStartX + startSpreadX;
       const startY = baseStartY + startSpreadY;
 
-      const randomDriftX = (Math.random() * 68) - 34;
-      const randomDriftY = (Math.random() * 64) - 32;
-      const randomAngleBias = (Math.random() * 18) - 9;
+      const viewportWidth = window.innerWidth;
+      const horizontalDistance = endX - startX;
+      const verticalDistance = endY - startY;
+      const openingLead = Math.min(Math.abs(horizontalDistance) * 0.22 + 55 + (Math.random() * 35), 170);
+      const finishLead = Math.min(34 + (Math.random() * 48), 96);
+      const slightEdgeChance = Math.random() < 0.12;
+      const edgePad = slightEdgeChance ? 10 + (Math.random() * 18) : 0;
+      const initialDrop = Math.min(Math.max(verticalDistance * 0.35, 54) + (Math.random() * 24), 118);
+      const landingDrop = 10 + (Math.random() * 10);
+      const control1X = Math.min(viewportWidth + edgePad, startX + (horizontalDistance * 0.18) + openingLead);
+      const control1Y = Math.min(endY - 28, startY + initialDrop);
+      const control2X = endX - finishLead;
+      const control2Y = endY - (42 + (Math.random() * 52));
+      const sCurveAmplitude = 26 + (Math.random() * 44);
+      const verticalSwing = 20 + (Math.random() * 28);
+      const positionAt = (progress) => {
+        const sinkIn = progress > 0.82 ? ((progress - 0.82) / 0.18) * landingDrop : 0;
+        const baseX = cubicPoint(progress, startX, control1X, control2X, endX);
+        const baseY = cubicPoint(progress, startY, control1Y, control2Y, endY);
+        const envelope = Math.sin(progress * Math.PI) ** 0.9;
+        const lateralSwing = Math.sin(progress * Math.PI * 2) * sCurveAmplitude * envelope;
+        const verticalDrift = Math.sin((progress * Math.PI * 2) - (Math.PI * 0.2)) * verticalSwing * envelope;
 
-      // A higher control point plus wander creates a floatier path.
-      const controlX = ((startX + endX) / 2) + randomDriftX;
-      const controlY = (Math.min(startY, endY) - Math.max(140, Math.abs(endX - startX) * 0.22)) + randomDriftY;
+        return {
+          x: baseX + lateralSwing,
+          y: baseY + verticalDrift + sinkIn
+        };
+      };
+      const discColorPalette = [
+        [135, 205, 222],
+        [166, 227, 161],
+        [245, 194, 231],
+        [250, 179, 135],
+        [137, 180, 250],
+        [249, 226, 175],
+        [148, 226, 213],
+        [244, 208, 140]
+      ];
+      const [red, green, blue] = discColorPalette[Math.floor(Math.random() * discColorPalette.length)];
 
-      const bird = document.createElement('i');
-      bird.className = 'ti ti-feather logo-bird-flight';
-      bird.style.fontSize = `${22 + (Math.random() * 9)}px`;
-      bird.style.left = `${startX}px`;
-      bird.style.top = `${startY}px`;
-      bird.style.opacity = '0';
-      document.body.appendChild(bird);
+      const disc = document.createElement('i');
+      disc.className = 'ti ti-disc logo-disc-flight';
+      disc.style.fontSize = `${20 + (Math.random() * 8)}px`;
+      disc.style.color = `rgb(${red}, ${green}, ${blue})`;
+      disc.style.textShadow = `0 0 18px rgba(${red}, ${green}, ${blue}, 0.45)`;
+      disc.style.left = `${startX}px`;
+      disc.style.top = `${startY}px`;
+      disc.style.opacity = '0';
+      document.body.appendChild(disc);
       activeLogoFlights += 1;
-      playNowButton.classList.add('logo-fly-target');
+      basketTarget.classList.add('logo-fly-target');
 
-      const durationMs = 2800 + (Math.random() * 900);
-      const wobblePhase = Math.random() * Math.PI * 2;
-      const wobbleAmplitude = 6 + (Math.random() * 11);
-      const wobbleSpeed = 4 + (Math.random() * 2.5);
+      const durationMs = 1500 + (Math.random() * 700);
+      const spinDirection = Math.random() > 0.5 ? 1 : -1;
+      const spinStart = Math.random() * 360;
+      const bankBias = (Math.random() * 24) - 12;
       const startTime = performance.now();
 
       const animateFlight = (now) => {
         const t = Math.min((now - startTime) / durationMs, 1);
-        const driftX = Math.sin((t * wobbleSpeed * Math.PI * 2) + wobblePhase) * wobbleAmplitude;
-        const driftY = Math.cos((t * (wobbleSpeed - 0.7) * Math.PI * 2) + wobblePhase) * (wobbleAmplitude * 0.45);
-
-        const x = bezierPoint(t, startX, controlX, endX) + driftX;
-        const y = bezierPoint(t, startY, controlY, endY) + driftY;
-        const dx = bezierSlope(t, startX, controlX, endX);
-        const dy = bezierSlope(t, startY, controlY, endY);
+        const { x, y } = positionAt(t);
+        const nextPosition = positionAt(Math.min(1, t + 0.004));
+        const dx = nextPosition.x - x;
+        const dy = nextPosition.y - y;
 
         const heading = Math.atan2(dy, dx) * (180 / Math.PI);
-        const wingFlap = Math.sin((t * 16 * Math.PI) + wobblePhase) * (7 + Math.random() * 3);
-        const scale = 0.9 + (Math.sin((t * 14 * Math.PI) + wobblePhase) * 0.12);
+        const spinRotation = spinStart + (t * 1080 * spinDirection);
+        const scale = t > 0.86 ? 1 - (((t - 0.86) / 0.14) * 0.22) : 1;
         const fadeIn = Math.min(1, t / 0.07);
-        const fadeOut = t > 0.86 ? 1 - ((t - 0.86) / 0.14) : 1;
+        const fadeOut = t > 0.94 ? 1 - ((t - 0.94) / 0.06) : 1;
 
-        bird.style.left = `${x}px`;
-        bird.style.top = `${y}px`;
-        bird.style.opacity = `${Math.max(0, fadeIn * fadeOut)}`;
-        bird.style.transform = `translate(-50%, -50%) rotate(${heading + wingFlap + randomAngleBias}deg) scale(${scale})`;
+        disc.style.left = `${x}px`;
+        disc.style.top = `${y}px`;
+        disc.style.opacity = `${Math.max(0, fadeIn * fadeOut)}`;
+        disc.style.transform = `translate(-50%, -50%) rotate(${heading + bankBias + spinRotation}deg) scale(${scale})`;
 
         if (t < 1) {
           requestAnimationFrame(animateFlight);
           return;
         }
 
-        bird.remove();
+        disc.remove();
         activeLogoFlights = Math.max(0, activeLogoFlights - 1);
         if (activeLogoFlights === 0) {
-          playNowButton.classList.remove('logo-fly-target');
+          basketTarget.classList.remove('logo-fly-target');
         }
-        playNowButton.classList.add('logo-fly-hit');
-        setTimeout(() => playNowButton.classList.remove('logo-fly-hit'), 560);
+        basketTarget.classList.add('logo-fly-hit');
+        setTimeout(() => basketTarget.classList.remove('logo-fly-hit'), 560);
       };
 
       requestAnimationFrame(animateFlight);
     });
   }
 
-  // Donate button handler
-  document.getElementById('donate-btn').addEventListener('click', function() {
-    const toast = document.createElement('div');
-    toast.className = 'toast';
-    toast.textContent = "We don't deserve it yet. Thanks ❤";
-    document.body.appendChild(toast);
-    
-    setTimeout(() => {
-      toast.classList.add('fade-out');
-      setTimeout(() => toast.remove(), 300);
-    }, 3000);
-  });
+  const donateButton = document.getElementById('donate-btn');
+  if (donateButton) {
+    donateButton.addEventListener('click', () => {
+      // thanks to the love should be in new line. \n not working in textContent, so we can just split into two lines with a <br>.
+      donateButton.innerHTML = "We don't deserve it yet.<br>Thanks for the love though! ♥♥♥";
+    });
+  }
 
   // Generate QR Code with native center logo support.
   const qrRoot = document.getElementById("qrcode");
