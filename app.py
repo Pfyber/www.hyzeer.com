@@ -1,12 +1,10 @@
-from flask import Flask, send_from_directory, render_template_string
-import os
+from flask import Flask, send_from_directory
 
 app = Flask(__name__, static_folder='')
 
 @app.route('/')
 def index():
-    with open('index.html') as f:
-        return render_template_string(f.read())
+    return send_from_directory('', 'index.html')
 
 @app.route('/css/<path:filename>')
 def css(filename):
