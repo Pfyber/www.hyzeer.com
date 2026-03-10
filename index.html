@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.35.0/tabler-icons.min.css" integrity="sha512-gzw5zNP2TRq+DKyAqZfDclaTG4dOrGJrwob2Fc8xwcJPDPVij0HowLIMZ8c1NefFM0OZZYUUUNoPfcoI5jqudw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://unpkg.com/qr-code-styling@1.9.2/lib/qr-code-styling.js"></script>
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -293,7 +293,10 @@
         <div class="qr-corner tr"></div>
         <div class="qr-corner bl"></div>
         <div class="qr-corner br"></div>
-        <div id="qrcode"></div>
+        <div class="qr-code-wrap">
+          <div id="qrcode"></div>
+          <div class="qr-code-caption">hyzeer.com</div>
+        </div>
       </div>
       <div class="qr-stat">
         <div class="qr-stat-num" style="font-size:32px; padding-bottom:4px">Register. Stick. Relax.</div>

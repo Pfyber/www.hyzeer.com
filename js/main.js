@@ -124,12 +124,33 @@
     }, 3000);
   });
 
-  // Generate QR Code
-  new QRCode(document.getElementById("qrcode"), {
-    text: "https://app.hyzeer.com",
-    width: 160,
-    height: 160,
-    colorDark: "#000000",
-    colorLight: "#ffffff",
-    correctLevel: QRCode.CorrectLevel.H
-  });
+  // Generate QR Code with native center logo support.
+  const qrRoot = document.getElementById("qrcode");
+  if (qrRoot && window.QRCodeStyling) {
+    const qrCode = new QRCodeStyling({
+      width: 160,
+      height: 160,
+      type: 'canvas',
+      data: 'https://hyzeer.com/found',
+      image: 'img/logo.png',
+      qrOptions: {
+        errorCorrectionLevel: 'H'
+      },
+      dotsOptions: {
+        color: '#000000',
+        type: 'square'
+      },
+      backgroundOptions: {
+        color: '#ffffff'
+      },
+      imageOptions: {
+        hideBackgroundDots: true,
+        imageSize: 0.22,
+        margin: 2,
+        crossOrigin: 'anonymous'
+      }
+    });
+
+    qrRoot.innerHTML = '';
+    qrCode.append(qrRoot);
+  }
